@@ -1,0 +1,161 @@
+html {
+    background: #fff;
+}
+
+body {
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    color: #545454;
+    font-family: "Baskerville", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #222;
+    line-height: 1.3;
+    font-family: "Baskerville" !important;
+}
+
+h1 {
+    font-size: 55px !important;
+}
+
+h2 {
+    margin-top: 1.3em;
+    font-size: 40px !important;
+}
+
+p {
+    font-family: "Baskerville";
+    font-size: 18px;
+}
+
+a {
+    font-family: "Baskerville";
+    font-size: 18px !important;
+}
+
+.link-g {
+    color: black;
+    margin-right: 20px !important;
+    background-color: #f7edea;
+}
+
+.link-g:hover{
+    color: black;
+    text-decoration: underline;
+    text-decoration-color: black;
+}
+
+/*
+.link1 {
+    color: #dbdbdb;
+    margin-right: 20px !important;
+}
+
+.link2 {
+    color: #dbdbdb;
+    margin-right: 20px !important;
+}
+
+.link3 {
+    color: #dbdbdb;
+    margin-right: 20px !important;
+}
+
+.link1:hover{
+    color: #eb7f32;
+    text-decoration: underline;
+    text-decoration-color: #eb7f32;
+}
+
+.link2:hover{
+    color: #ae678c;
+    text-decoration: underline;
+    text-decoration-color: #ae678c;
+}
+
+.link3:hover{
+    color: #9dd2db;
+    text-decoration: underline;
+    text-decoration-color: #9dd2db;
+}
+*/
+
+.section {
+    margin:0px; 
+    padding: 0px;
+    
+}
+.gap {
+    margin:0px; 
+    padding: 0px;
+    height: 20vh;
+}
+
+.small-gap {
+    margin:0px; 
+    padding: 0px;
+    height: 3vh;
+}
+
+.black-white{
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+
+.black-white:hover{
+    -webkit-filter: none; /* Safari 6.0 - 9.0 */
+    filter: none;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+.menu-long{
+    margin-top: 12vh; 
+    height:2px; 
+    width:100%; 
+    background-color: #545454; 
+    position: fixed; 
+    z-index: 100;
+}
+
+.menu-rect {
+    margin-left: 8.5%;
+    width: 40px;
+    height: 2px;
+    background-color: #545454;
+    position: fixed;
+    z-index: 100;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .homeRose {
+
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
+}
