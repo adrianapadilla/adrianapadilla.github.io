@@ -34,7 +34,11 @@ p {
 
 a {
     font-family: "Baskerville";
-    font-size: 18px !important;
+    font-size: 20px !important;
+}
+
+ul {
+  list-style-type: none;
 }
 
 .link-g {
@@ -47,42 +51,8 @@ a {
     color: black;
     text-decoration: underline;
     text-decoration-color: black;
+    text-decoration-line: line-through;
 }
-
-/*
-.link1 {
-    color: #dbdbdb;
-    margin-right: 20px !important;
-}
-
-.link2 {
-    color: #dbdbdb;
-    margin-right: 20px !important;
-}
-
-.link3 {
-    color: #dbdbdb;
-    margin-right: 20px !important;
-}
-
-.link1:hover{
-    color: #eb7f32;
-    text-decoration: underline;
-    text-decoration-color: #eb7f32;
-}
-
-.link2:hover{
-    color: #ae678c;
-    text-decoration: underline;
-    text-decoration-color: #ae678c;
-}
-
-.link3:hover{
-    color: #9dd2db;
-    text-decoration: underline;
-    text-decoration-color: #9dd2db;
-}
-*/
 
 .section {
     margin:0px; 
@@ -95,10 +65,13 @@ a {
     height: 20vh;
 }
 
-.small-gap {
-    margin:0px; 
-    padding: 0px;
-    height: 3vh;
+.scroll-bar {
+    background-color: black; 
+/*    height: 33vh; */
+    width: 2px; 
+    text-align: center; 
+    position: fixed; 
+    z-index: 100;
 }
 
 .black-white{
@@ -116,22 +89,33 @@ a {
   width: 33.33%;
 }
 
-.menu-long{
-    margin-top: 12vh; 
-    height:2px; 
-    width:100%; 
-    background-color: #545454; 
-    position: fixed; 
+.menu-button {
+    right: 87%;
+    width: 60px;
+    height: 5vh;
+    background-color: clear;
+    position: fixed;
     z-index: 100;
 }
 
 .menu-rect {
-    margin-left: 8.5%;
+    right: 87%;
     width: 40px;
     height: 2px;
-    background-color: #545454;
+    background-color: black;
+    position: fixed;
+    z-index: 99;
+}
+
+.menu {
     position: fixed;
     z-index: 100;
+    transition: 0.5s;
+    right: 85.5%;
+}
+
+.menu li{
+    display: none;
 }
 
 ::-webkit-scrollbar { 
@@ -159,3 +143,4 @@ a {
 @media (min-width: 1200px) {
 
 }
+
