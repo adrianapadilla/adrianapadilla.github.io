@@ -26,8 +26,8 @@ function Monster(spriteTexture, spriteTexture_i, hero, atX, atY, type) {
     this.prevX = atX;
     this.currX = atX;
     
-    this.mHeroState = Hero.eHeroState.eRunLeft;
-    this.mPreviousHeroState = Hero.eHeroState.eRunLeft;
+    this.mMonsterState = Monster.eMonsterState.eRunRight;
+    this.mPreviousMonsterState = Monster.eMonsterState.eRunRight;
 
     this.mMonster = new SpriteAnimateRenderable(spriteTexture);
     this.mMonster.setColor([1, 1, 1, 0]);
@@ -112,9 +112,9 @@ Monster.prototype.update = function () {
     
     this.currX = this.getXform().getXPos();
     if (this.currX < this.prevX) {
-        this.mMonsterState = Monster.eMonsterState.eRunLeft;
-    } else {
         this.mMonsterState = Monster.eMonsterState.eRunRight;
+    } else {
+        this.mMonsterState = Monster.eMonsterState.eRunLeft;
     }
    this.prevX = this.currX;
    
@@ -132,12 +132,11 @@ Monster.eMonsterState = Object.freeze({
 });
 
 Monster.prototype.changeAnimation = function () {
-    console.log(this.mHeroState);
-    console.log(this.mPreviousHeroState);
-    if (this.mHeroState !== this.mPreviousHeroState) {
-        this.mPreviousHeroState = this.mHeroState;
-        switch (this.mHeroState) {
-            case Monster.eHeroState.eRunLeft:
+
+    if (this.mMonsterState !== this.mPreviousMonsterState) {
+        this.mPreviousMonsterState = this.mMonsterState;
+        switch (this.mMonsterState) {
+            case Monster.eMonsterState.eRunLeft:
                 this.mMonster.getXform().setSize(-this.kWidth, this.kHeight);
                 this.mMonster.setAnimationSpeed(3);
                 if (this.mType === 0) {
@@ -150,7 +149,7 @@ Monster.prototype.changeAnimation = function () {
                     this.mMonster.setSpriteSequence(215, 43, 69.3, 100, 18,0);
                 }
                 break;
-            case Monster.eHeroState.eRunRight:
+            case Monster.eMonsterState.eRunRight:
                 this.mMonster.getXform().setSize(this.kWidth, this.kHeight);
                 this.mMonster.setAnimationSpeed(3);
                 if (this.mType === 0) {
