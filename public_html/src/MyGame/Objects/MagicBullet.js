@@ -23,25 +23,19 @@ function MagicBullet(dir, atX, atY) {
     this.mFlagForward = dir;
 
     this.mBulletBoundPos = [atX, atY];
-    this.mBulletBoundW = 3;
-    this.mBulletBoundH = 3;
 
+    this.mHit = false;
     this.mDestroy = false;
     this.mBox = null;
+    this.mDelta = 1;
+    this.prevTime = new Date();
+    this.currTime = new Date();
     this._initialize();
 }
 
 /** Private */
 MagicBullet.prototype._initialize = function () {
-    // // sets the background to gray
-    // gEngine.DefaultResources.setGlobalAmbientIntensity(3);
-    this.mBox = new BoundingBox(this.mBulletBoundPos, this.mBulletBoundW, this.mBulletBoundH);
-    this.mSnow = new Snow(this.mBulletBoundPos[0], this.mBulletBoundPos[1], 1, 0, 3, 0, -1, 3, 4, 0, 4.5, 1);
-};
-
-
-MagicBullet.prototype._configBound = function () {
-    this.mBox.setBounds(this.mBulletBoundPos, this.mBulletBoundW, this.mBulletBoundH);
+    this.mSnow = new Snow(this.mBulletBoundPos[0], this.mBulletBoundPos[1], 1, 0, 3, 0, -1, 5, 4, 0, 4.5, 1);
 };
 
 /** Public */
@@ -49,27 +43,53 @@ MagicBullet.prototype.draw = function (camera) {
     this.mSnow.draw(camera);
 };
 
-MagicBullet.prototype.update = function (forwardDir, boundStat) {
+MagicBullet.prototype.update = function () {
     gEngine.ParticleSystem.update(this.mSnow);
 
     if (this.mFlagForward) {
-        this.mSnow.setxAcceleration(this.mSnowForWard);
-        this.mSnow.setPos(this.mSnow.getPos()[0] += 1, this.mSnow.getPos()[1]);
+        if (!this.mHit) {
+            this.mSnow.setxAcceleration(this.mSnowForWard);
+            this.mSnow.setPos(this.mSnow.getPos()[0] += this.mDelta, this.mSnow.getPos()[1]);
+        }
+        if (this.mSnow.getPos()[0] === (this.mBulletBoundPos[0] + 20)) {
+            this.shouldSplash();
+            this.destroy();
+        }
     } else {
-        this.mSnow.setxAcceleration(this.mSnowBackWard);
-        this.mSnow.setPos(this.mSnow.getPos()[0] -= 1, this.mSnow.getPos()[1]);
+        if (!this.mHit) {
+            this.mSnow.setxAcceleration(this.mSnowBackWard);
+            this.mSnow.setPos(this.mSnow.getPos()[0] -= this.mDelta, this.mSnow.getPos()[1]);
+        }
+        if (this.mSnow.getPos()[0] === (this.mBulletBoundPos[0] - 20)) {
+            this.shouldSplash();
+            this.destroy();
+        }
     }
 
-    // Update bounding box when bullet move
-    this._configBound();
+    if (this.mHit) {
+        this.destroy();
+    }
 };
 
-MagicBullet.prototype.collideOther = function (boundingBox) {
-    return this.mBox.boundCollideStatus(boundingBox);
+MagicBullet.prototype.destroy = function () {
+    this.currTime = new Date();
+    if (this.currTime - this.prevTime >= 1000) {
+        this.mDestroy = true;
+    }
 };
 
 MagicBullet.prototype.shouldDelete = function () {
     return this.mDestroy;
+};
+
+MagicBullet.prototype.shouldSplash = function () {
+    this.mDelta = 0;
+    this.mSnow.setxAcceleration(0);
+    this.mSnow.setWidth(2);
+    this.mSnow.setLife(2);
+    this.mSnow.setyAcceleration(-30);
+    this.mSnow.setPos(this.mSnow.getPos()[0], this.mSnow.getPos()[1]);
+    this.mHit = true;
 };
 
 MagicBullet.prototype.isBulletInViewport = function (camera) {
